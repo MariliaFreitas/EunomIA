@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from uuid import uuid4
 
 from dotenv import load_dotenv
@@ -64,6 +64,11 @@ class EventUpdate(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str = Field(min_length=1, max_length=4000)
+
+
+class GoogleSyncRequest(BaseModel):
+    email_since: date = Field(default_factory=lambda: date.today() - timedelta(days=30))
+    email_until: date = Field(default_factory=date.today)
 
 
 class TaskUpdate(BaseModel):
@@ -423,9 +428,14 @@ def google_callback(request: Request, code: str, state: str):
 
 
 @app.post("/api/integrations/google/sync")
-def google_sync():
+def google_sync(request: GoogleSyncRequest | None = None):
+    request = request or GoogleSyncRequest()
+    if request.email_since > request.email_until:
+        raise HTTPException(status_code=422, detail="A data inicial deve ser anterior ou igual à data final.")
+    if request.email_until > date.today():
+        raise HTTPException(status_code=422, detail="A data final não pode ser futura.")
     try:
-        result = sync_google()
+        result = sync_google(request.email_since, request.email_until)
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
     except (HttpError, GoogleAuthError, OSError, ValueError, RuntimeError) as error:

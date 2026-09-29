@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from uuid import uuid4
 
 from google.oauth2.credentials import Credentials
@@ -138,10 +138,14 @@ def _headers(payload: dict) -> dict:
     }
 
 
-def sync_google() -> dict:
+def sync_google(email_since: date | None = None, email_until: date | None = None) -> dict:
     credentials = google_credentials()
     if credentials is None:
         raise ValueError("Conecte sua conta Google antes de sincronizar.")
+    email_since = email_since or (date.today() - timedelta(days=30))
+    email_until = email_until or date.today()
+    if email_since > email_until:
+        raise ValueError("A data inicial deve ser anterior ou igual à data final.")
     calendar = build("calendar", "v3", credentials=credentials)
     gmail = build("gmail", "v1", credentials=credentials)
     now = datetime.now(timezone.utc)
@@ -196,10 +200,14 @@ def sync_google() -> dict:
             )
             calendar_count += 1
 
+    gmail_query = (
+        f"after:{email_since.strftime('%Y/%m/%d')} "
+        f"before:{(email_until + timedelta(days=1)).strftime('%Y/%m/%d')}"
+    )
     listed = (
         gmail.users()
         .messages()
-        .list(userId="me", q="newer_than:30d", maxResults=50)
+        .list(userId="me", q=gmail_query, maxResults=50)
         .execute()
         .get("messages", [])
     )

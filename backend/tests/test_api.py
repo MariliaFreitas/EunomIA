@@ -2,6 +2,7 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 TEST_DATABASE = Path(tempfile.gettempdir()) / "eunomia-api-tests.sqlite"
 os.environ["DATABASE_PATH"] = str(TEST_DATABASE)
@@ -48,6 +49,28 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["action"]["type"], "event_created")
         self.assertIn("Revisão do protótipo", response.json()["reply"])
+
+    def test_google_sync_uses_the_selected_email_date_range(self):
+        result = {"calendar_events": 0, "emails": 8, "email_threads_with_events": 2}
+        with patch("app.main.sync_google", return_value=result) as sync:
+            response = self.client.post(
+                "/api/integrations/google/sync",
+                json={"email_since": "2026-09-01", "email_until": "2026-09-29"},
+            )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["result"], result)
+        sync.assert_called_once()
+        self.assertEqual(sync.call_args.args[0].isoformat(), "2026-09-01")
+        self.assertEqual(sync.call_args.args[1].isoformat(), "2026-09-29")
+
+    def test_google_sync_rejects_an_invalid_email_date_range(self):
+        with patch("app.main.sync_google") as sync:
+            response = self.client.post(
+                "/api/integrations/google/sync",
+                json={"email_since": "2026-09-29", "email_until": "2026-09-01"},
+            )
+        self.assertEqual(response.status_code, 422)
+        sync.assert_not_called()
 
 
 if __name__ == "__main__":
