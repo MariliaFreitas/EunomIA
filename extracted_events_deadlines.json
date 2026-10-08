@@ -1,0 +1,274 @@
+{
+  "thread_id": "projeto_aurora_integracao_homologacao_ia",
+  "evento_principal": {
+    "tipo": "reuniao",
+    "titulo": "Alinhamento da integração e homologação do Módulo de IA",
+    "projeto": "Projeto AURORA",
+    "contexto": "Alinhamento sobre a integração do módulo de IA com o back-end, resultados dos testes, preparação do ambiente de homologação e definição dos próximos passos da entrega.",
+    "status": "confirmado_na_thread",
+    "situacao_atual": "aguardando_confirmacao_usuario",
+    "confianca_identificacao": "alta",
+    "data": "2026-10-13",
+    "horario_inicio": "16:30",
+    "horario_fim": null,
+    "modalidade": "online",
+    "plataforma": "Google Meet",
+    "link": "meet.google.com/aurora-pdi-demo",
+    "local": null,
+    "participantes": [
+      {
+        "nome": "Ana Martins",
+        "papel": "Product Owner",
+        "situacao": "confirmado"
+      },
+      {
+        "nome": "Bruno Lima",
+        "papel": "Líder Técnico",
+        "situacao": "confirmado"
+      },
+      {
+        "nome": "Camila Rocha",
+        "papel": "QA",
+        "situacao": "confirmado"
+      },
+      {
+        "nome": "Diego Alves",
+        "papel": "Representante do Cliente",
+        "situacao": "confirmado"
+      },
+      {
+        "nome": "Fernanda Costa",
+        "papel": "Equipe de Inovação",
+        "situacao": "aguardando_confirmacao"
+      }
+    ],
+    "acao_usuario": {
+      "necessaria": true,
+      "tipo": "confirmar_criacao_evento",
+      "mensagem": "A reunião foi confirmada na thread. Deseja criar este evento na agenda?",
+      "opcoes": [
+        "confirmar_e_criar",
+        "editar",
+        "ignorar"
+      ]
+    }
+  },
+  "historico_evento": [
+    {
+      "ordem": 1,
+      "tipo": "proposta_horario",
+      "data": "2026-10-13",
+      "horario": "14:00",
+      "status": "possivel_agenda",
+      "situacao": "aguardando_retorno",
+      "origem_email": "email_01"
+    },
+    {
+      "ordem": 2,
+      "tipo": "indisponibilidade",
+      "participante": "Bruno Lima",
+      "horario_afetado": "14:00",
+      "origem_email": "email_02"
+    },
+    {
+      "ordem": 3,
+      "tipo": "nova_proposta_horario",
+      "data": "2026-10-13",
+      "horario": "15:30",
+      "proposto_por": "Bruno Lima",
+      "origem_email": "email_02"
+    },
+    {
+      "ordem": 4,
+      "tipo": "conflito_horario",
+      "participante": "Camila Rocha",
+      "horario_afetado": "15:30",
+      "motivo": "Comitê de Segurança das 15h às 16h",
+      "origem_email": "email_03"
+    },
+    {
+      "ordem": 5,
+      "tipo": "nova_proposta_horario",
+      "data": "2026-10-13",
+      "horario": "16:30",
+      "proposto_por": "Camila Rocha",
+      "origem_email": "email_03"
+    },
+    {
+      "ordem": 6,
+      "tipo": "aguardando_confirmacao",
+      "participante": "Diego Alves",
+      "data": "2026-10-13",
+      "horario": "16:30",
+      "origem_email": "email_04"
+    },
+    {
+      "ordem": 7,
+      "tipo": "confirmacao_participante",
+      "participante": "Diego Alves",
+      "data": "2026-10-13",
+      "horario": "16:30",
+      "origem_email": "email_05"
+    },
+    {
+      "ordem": 8,
+      "tipo": "confirmacao_final_thread",
+      "data": "2026-10-13",
+      "horario": "16:30",
+      "origem_email": "email_06"
+    }
+  ],
+  "tarefas_vinculadas": [
+    {
+      "id": "tarefa_01",
+      "titulo": "Revisar seções 4.2 e 4.5 do Plano de Integração",
+      "descricao": "Realizar a leitura das seções 4.2 e 4.5 antes da reunião de alinhamento.",
+      "responsaveis": [
+        "Ana Martins",
+        "Bruno Lima",
+        "Camila Rocha",
+        "Diego Alves",
+        "Fernanda Costa"
+      ],
+      "prazo": {
+        "tipo": "antes_do_evento",
+        "data_limite": "2026-10-13",
+        "horario_limite": "16:30"
+      },
+      "status": "identificada",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal",
+      "origem_email": "email_01",
+      "anexos_relacionados": [
+        "Plano_Integracao_v3.pdf"
+      ]
+    },
+    {
+      "id": "tarefa_02",
+      "titulo": "Disponibilizar versão candidata para homologação",
+      "responsavel": "Bruno Lima",
+      "prazo_original": {
+        "data": "2026-10-12",
+        "horario": "17:00"
+      },
+      "prazo_atual": {
+        "data": "2026-10-13",
+        "horario": "11:00"
+      },
+      "status": "concluida",
+      "data_conclusao": "2026-10-13",
+      "horario_conclusao": "11:12",
+      "resultado": "Versão AURORA-RC-07 disponibilizada",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal",
+      "historico": [
+        {
+          "tipo": "prazo_definido",
+          "data": "2026-10-12",
+          "horario": "17:00"
+        },
+        {
+          "tipo": "prazo_alterado",
+          "nova_data": "2026-10-13",
+          "novo_horario": "11:00",
+          "motivo": "Problema na integração com o serviço de autenticação"
+        },
+        {
+          "tipo": "tarefa_concluida",
+          "data": "2026-10-13",
+          "horario": "11:12"
+        }
+      ]
+    },
+    {
+      "id": "tarefa_03",
+      "titulo": "Consolidar evidências dos testes críticos",
+      "responsavel": "Camila Rocha",
+      "prazo": {
+        "data": "2026-10-13",
+        "horario": "12:00"
+      },
+      "status": "concluida",
+      "data_conclusao": "2026-10-13",
+      "horario_conclusao": "12:08",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal",
+      "anexos_relacionados": [
+        "Relatorio_Testes_RC07.pdf",
+        "Evidencias_Testes_RC07.zip"
+      ]
+    },
+    {
+      "id": "tarefa_04",
+      "titulo": "Preparar demonstração da versão mais recente",
+      "responsavel": "Bruno Lima",
+      "prazo": {
+        "tipo": "antes_do_evento",
+        "data_limite": "2026-10-13",
+        "horario_limite": "16:30"
+      },
+      "status": "concluida",
+      "resultado": "Versão AURORA-RC-07 disponível para demonstração",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal"
+    },
+    {
+      "id": "tarefa_05",
+      "titulo": "Confirmar participação na reunião",
+      "responsavel": "Fernanda Costa",
+      "prazo": {
+        "data": "2026-10-13",
+        "horario": "10:00"
+      },
+      "status": "pendente",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal"
+    },
+    {
+      "id": "tarefa_06",
+      "titulo": "Discutir defeito crítico relacionado a arquivos acima de 20 MB",
+      "responsavel": "Equipe da reunião",
+      "prazo": {
+        "tipo": "durante_evento",
+        "evento_relacionado": "evento_principal"
+      },
+      "status": "pendente",
+      "prioridade": "alta",
+      "contexto": "Existe um defeito crítico aberto que pode impactar a decisão de liberar a versão para homologação com usuários.",
+      "confirmacao_usuario": "pendente",
+      "evento_pai": "evento_principal"
+    }
+  ],
+  "documentos_relacionados": [
+    {
+      "nome": "Plano_Integracao_v3.pdf",
+      "tipo": "documento_preparatorio"
+    },
+    {
+      "nome": "Roteiro_Homologacao_v2.xlsx",
+      "tipo": "roteiro"
+    },
+    {
+      "nome": "Release_Notes_AURORA_RC07.pdf",
+      "tipo": "release_notes"
+    },
+    {
+      "nome": "Relatorio_Testes_RC07.pdf",
+      "tipo": "relatorio_testes"
+    },
+    {
+      "nome": "Evidencias_Testes_RC07.zip",
+      "tipo": "evidencias_testes"
+    }
+  ],
+  "alertas": [
+    {
+      "tipo": "pendencia_confirmacao",
+      "descricao": "Fernanda Costa ainda não confirmou participação."
+    },
+    {
+      "tipo": "problema_critico",
+      "descricao": "Existe defeito crítico relacionado ao processamento de arquivos maiores que 20 MB."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "thread_id": "projeto_aurora_integracao_homologacao_ia",
+  "assunto": "[Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+  "emails": [
+    {
+      "id": "email_01",
+      "de": "Ana Martins — Product Owner",
+      "para": ["Bruno Lima", "Camila Rocha", "Diego Alves"],
+      "cc": [],
+      "data_hora": "2026-10-06T09:12:00-03:00",
+      "assunto": "[Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Bom dia, pessoal.\n\nPrecisamos realizar um alinhamento sobre a próxima etapa do Projeto AURORA, principalmente sobre a integração do novo módulo de IA com o back-end e a preparação do ambiente para homologação.\n\nMinha sugestão é fazermos a reunião na terça-feira, 13/10, às 14h.\n\nA ideia é discutirmos:\n- situação atual da integração;\n- pontos ainda pendentes no back-end;\n- resultados iniciais dos testes;\n- definição do que estará disponível para homologação;\n- próximos passos da entrega.\n\nEstou anexando o Plano_Integracao_v3.pdf. Se possível, peço que todos façam a leitura antes da reunião, principalmente das seções 4.2 e 4.5.\n\nPor favor, confirmem a disponibilidade até amanhã ao meio-dia.\n\nObrigada,\nAna",
+      "anexos": ["Plano_Integracao_v3.pdf"]
+    },
+    {
+      "id": "email_02",
+      "de": "Bruno Lima — Líder Técnico",
+      "para": ["Ana Martins", "Camila Rocha", "Diego Alves"],
+      "cc": [],
+      "data_hora": "2026-10-06T11:34:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Oi, Ana.\n\nNa terça eu não consigo às 14h porque estarei em outra reunião com a equipe de infraestrutura.\n\nPara mim poderia ser às 15h30 ou, como segunda opção, quarta-feira pela manhã, às 9h.\n\nA integração principal já está funcionando no ambiente de desenvolvimento e acredito que conseguiremos fazer uma demonstração na reunião.\n\nPara isso, preciso receber da Camila a situação atual dos testes até segunda-feira, 12/10, às 18h.\n\nAbraços,\nBruno",
+      "anexos": []
+    },
+    {
+      "id": "email_03",
+      "de": "Camila Rocha — QA",
+      "para": ["Bruno Lima", "Ana Martins", "Diego Alves"],
+      "cc": [],
+      "data_hora": "2026-10-06T13:10:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Pessoal,\n\nNa terça eu tenho o Comitê de Segurança das 15h às 16h, então 15h30 gera conflito para mim.\n\nConsigo participar a partir das 16h30.\n\nSe funcionar para todos, minha preferência seria manter a reunião na terça e passar para 16h30.\n\nSobre os testes, consigo consolidar os resultados até segunda.\n\nCamila",
+      "anexos": []
+    },
+    {
+      "id": "email_04",
+      "de": "Ana Martins — Product Owner",
+      "para": ["Diego Alves"],
+      "cc": ["Bruno Lima", "Camila Rocha"],
+      "data_hora": "2026-10-06T14:02:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Diego,\n\nBruno e Camila conseguem participar terça-feira, dia 13, às 16h30.\n\nEsse horário funciona para você?\n\nSe puder, confirme até amanhã às 10h para fecharmos o horário.\n\nAna",
+      "anexos": []
+    },
+    {
+      "id": "email_05",
+      "de": "Diego Alves — Representante do Cliente",
+      "para": ["Ana Martins"],
+      "cc": ["Bruno Lima", "Camila Rocha"],
+      "data_hora": "2026-10-07T08:47:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Bom dia.\n\n16h30 funciona para mim. Pode confirmar.\n\nVamos fazer de forma on-line pelo Google Meet.\n\nLink:\nmeet.google.com/aurora-pdi-demo\n\nGostaria também que vocês incluíssem a Fernanda Costa, da equipe de inovação, porque ela está acompanhando a validação do módulo de IA pelo nosso lado.\n\nSe possível, também gostaria de ver a versão mais recente funcionando durante a reunião.\n\nDiego",
+      "anexos": []
+    },
+    {
+      "id": "email_06",
+      "de": "Ana Martins — Product Owner",
+      "para": ["Bruno Lima", "Camila Rocha", "Diego Alves", "Fernanda Costa"],
+      "cc": [],
+      "data_hora": "2026-10-07T09:20:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Perfeito.\n\nEntão fica confirmado:\n\nAlinhamento da integração e homologação do Módulo de IA\nTerça-feira, 13/10, às 16h30\nOn-line — Google Meet\n\nLink: meet.google.com/aurora-pdi-demo\n\nIncluí a Fernanda na conversa.\n\nPara conseguirmos aproveitar melhor a reunião:\n\nBruno: precisamos da versão candidata à homologação até segunda-feira, 12/10, às 17h.\n\nCamila: por favor, consolide as evidências dos testes críticos até terça-feira, 13/10, às 12h.\n\nPara todos: revisar as seções 4.2 e 4.5 do Plano de Integração antes da reunião.\n\nTambém estou anexando o roteiro que utilizaremos na homologação.\n\nObrigada,\nAna",
+      "anexos": ["Roteiro_Homologacao_v2.xlsx"]
+    },
+    {
+      "id": "email_07",
+      "de": "Bruno Lima — Líder Técnico",
+      "para": ["Ana Martins", "Camila Rocha"],
+      "cc": ["Diego Alves", "Fernanda Costa"],
+      "data_hora": "2026-10-12T16:30:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Pessoal,\n\nTivemos um problema na integração com o serviço de autenticação e não vou conseguir disponibilizar a versão candidata até as 17h de hoje.\n\nA previsão agora é liberar a versão amanhã, 13/10, até as 11h.\n\nIsso não deve impedir a reunião das 16h30.\n\nAcho que seria interessante fazermos também uma revisão técnica na quarta-feira, 14/10, às 10h, apenas com desenvolvimento e QA, para analisar com mais detalhes os pontos técnicos encontrados durante a homologação.\n\nPodemos fazer presencialmente no Laboratório 2 do Centro de Pesquisa.\n\nCamila, esse horário funciona para você?\n\nBruno",
+      "anexos": []
+    },
+    {
+      "id": "email_08",
+      "de": "Camila Rocha — QA",
+      "para": ["Bruno Lima", "Ana Martins"],
+      "cc": ["Diego Alves", "Fernanda Costa"],
+      "data_hora": "2026-10-12T17:05:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Bruno,\n\nPara mim, quarta-feira às 10h no Laboratório 2 funciona.\n\nSobre amanhã, mantenho normalmente minha participação na reunião das 16h30.\n\nVou finalizar as evidências pela manhã.\n\nCamila",
+      "anexos": []
+    },
+    {
+      "id": "email_09",
+      "de": "Ana Martins — Product Owner",
+      "para": ["Bruno Lima", "Camila Rocha", "Diego Alves", "Fernanda Costa"],
+      "cc": [],
+      "data_hora": "2026-10-13T08:15:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Bom dia.\n\nConversei com o Bruno agora pela manhã.\n\nComo conseguiremos tratar os pontos técnicos durante o próprio alinhamento de hoje, não será mais necessária a revisão técnica de quarta-feira às 10h.\n\nPodem considerar essa reunião cancelada.\n\nO alinhamento principal de hoje às 16h30 permanece confirmado, pelo mesmo link do Meet.\n\nFernanda, ainda não vi sua confirmação de participação. Se puder, nos informe até às 10h se conseguirá participar.\n\nObrigada,\nAna",
+      "anexos": []
+    },
+    {
+      "id": "email_10",
+      "de": "Bruno Lima — Líder Técnico",
+      "para": ["Ana Martins", "Camila Rocha", "Diego Alves", "Fernanda Costa"],
+      "cc": [],
+      "data_hora": "2026-10-13T11:12:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Pessoal,\n\nA versão candidata foi disponibilizada.\n\nTag da versão:\nAURORA-RC-07\n\nO problema de autenticação foi corrigido e a integração está funcionando no ambiente de homologação.\n\nEstou anexando também as notas da versão.\n\nPodemos fazer a demonstração normalmente hoje às 16h30.\n\nBruno",
+      "anexos": ["Release_Notes_AURORA_RC07.pdf"]
+    },
+    {
+      "id": "email_11",
+      "de": "Camila Rocha — QA",
+      "para": ["Ana Martins", "Bruno Lima"],
+      "cc": ["Diego Alves", "Fernanda Costa"],
+      "data_hora": "2026-10-13T12:08:00-03:00",
+      "assunto": "RE: [Projeto AURORA] Alinhamento da integração e homologação do Módulo de IA",
+      "corpo": "Pessoal,\n\nFinalizei a consolidação dos testes.\n\nEstou enviando o relatório e as evidências em anexo.\n\nTemos um defeito crítico ainda aberto relacionado ao processamento de arquivos maiores que 20 MB. Acho importante discutirmos esse ponto na reunião de hoje antes de decidir se a versão pode seguir para homologação com os usuários.\n\nAté às 16h30.\n\nCamila",
+      "anexos": ["Relatorio_Testes_RC07.pdf", "Evidencias_Testes_RC07.zip"]
+    }
+  ]
+}
