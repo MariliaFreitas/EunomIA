@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import unittest
@@ -12,7 +13,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 
-class ApiTests(unittest.TestCase):
+class GoogleIntegrationApiTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.client_context = TestClient(app)
@@ -23,40 +24,33 @@ class ApiTests(unittest.TestCase):
         cls.client_context.__exit__(None, None, None)
         TEST_DATABASE.unlink(missing_ok=True)
 
-    def test_health_and_dashboard(self):
-        self.assertEqual(self.client.get("/api/health").json()["status"], "ok")
-        dashboard = self.client.get("/api/dashboard")
-        self.assertEqual(dashboard.status_code, 200)
-        self.assertGreaterEqual(dashboard.json()["stats"]["events"], 1)
-
-    def test_create_event(self):
-        response = self.client.post(
-            "/api/events",
-            json={
-                "title": "Teste de criação",
-                "starts_at": "2026-10-05T10:00:00-03:00",
-                "ends_at": "2026-10-05T11:00:00-03:00",
-            },
+    def show_exchange(self, method, path, request_body, response):
+        print(f"\n[{self.id()}] {method} {path}")
+        print(
+            "Entrada:",
+            json.dumps(request_body, ensure_ascii=False, indent=2)
+            if request_body is not None
+            else "<sem corpo>",
         )
-        self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.json()["event"]["title"], "Teste de criação")
+        print(f"Retorno HTTP: {response.status_code}")
+        print("Saída:", json.dumps(response.json(), ensure_ascii=False, indent=2))
 
-    def test_chat_creates_an_event_from_iso_date(self):
-        response = self.client.post(
-            "/api/chat",
-            json={"message": "Crie um evento chamado Revisão do protótipo em 2026-10-06 às 16h"},
-        )
+    def test_google_status_returns_connection_state(self):
+        path = "/api/integrations/google/status"
+        response = self.client.get(path)
+        self.show_exchange("GET", path, None, response)
+
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["action"]["type"], "event_created")
-        self.assertIn("Revisão do protótipo", response.json()["reply"])
+        self.assertIn("connected", response.json())
 
     def test_google_sync_uses_the_selected_email_date_range(self):
         result = {"calendar_events": 0, "emails": 8, "email_threads_with_events": 2}
+        request_body = {"email_since": "2026-09-01", "email_until": "2026-09-29"}
+        path = "/api/integrations/google/sync"
         with patch("app.main.sync_google", return_value=result) as sync:
-            response = self.client.post(
-                "/api/integrations/google/sync",
-                json={"email_since": "2026-09-01", "email_until": "2026-09-29"},
-            )
+            response = self.client.post(path, json=request_body)
+        self.show_exchange("POST", path, request_body, response)
+
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["result"], result)
         sync.assert_called_once()
@@ -64,13 +58,19 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(sync.call_args.args[1].isoformat(), "2026-09-29")
 
     def test_google_sync_rejects_an_invalid_email_date_range(self):
+        request_body = {"email_since": "2026-09-29", "email_until": "2026-09-01"}
+        path = "/api/integrations/google/sync"
         with patch("app.main.sync_google") as sync:
-            response = self.client.post(
-                "/api/integrations/google/sync",
-                json={"email_since": "2026-09-29", "email_until": "2026-09-01"},
-            )
+            response = self.client.post(path, json=request_body)
+        self.show_exchange("POST", path, request_body, response)
+
         self.assertEqual(response.status_code, 422)
         sync.assert_not_called()
+
+    def test_non_google_routes_are_not_registered(self):
+        for path in ("/api/events", "/api/chat", "/api/mock/extracted-events-deadlines"):
+            with self.subTest(path=path):
+                self.assertEqual(self.client.get(path).status_code, 404)
 
 
 if __name__ == "__main__":

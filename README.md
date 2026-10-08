@@ -1,6 +1,6 @@
 # EunomIA
 
-Protótipo de um agente de agenda que reúne calendário, contexto de e-mails e pendências numa única interface. A primeira versão segue a arquitetura monolítica definida: React, FastAPI, SQLite, Gemini e integrações OAuth com Gmail e Google Calendar. A agenda e as regras de conflito ficam no backend; o Gemini interpreta mensagens e consolida conversas quando uma chave está configurada.
+Protótipo de integração com Gmail e Google Calendar usando FastAPI, SQLite e Gemini. No estado atual, o backend expõe somente os endpoints da integração Google; as rotas de agenda e chatbot não fazem parte da API.
 
 ## Requisitos
 
@@ -51,23 +51,22 @@ python -m unittest discover -s tests -v
 2. Crie um OAuth Client ID do tipo **Web application**.
 3. Cadastre `http://localhost:8000/api/integrations/google/callback` como URI de redirecionamento autorizada.
 4. Informe `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET` no `backend/.env`.
-5. Reinicie a API, use **Conectar** na interface e autorize a conta. Use **Sincronizar** para importar os eventos dos últimos 30 dias/próximos 90 dias e os e-mails recentes.
+5. Reinicie a API e autorize a conta pelo endpoint `/api/integrations/google/auth`. Use `POST /api/integrations/google/sync` para importar eventos e e-mails do período solicitado.
 
 O consentimento solicita leitura do Gmail e acesso de leitura e escrita ao Google Calendar. O token OAuth é armazenado no SQLite local; mantenha o arquivo do banco fora do controle de versão.
 
 ## Gemini
 
-Preencha `GEMINI_API_KEY` em `backend/.env` para interpretação de mensagens e consolidação de threads. Sem essa chave, a aplicação continua demonstrável com interpretação local básica para consultas, criação e alteração de compromissos. A extração automática a partir de e-mails usa a Gemini API.
+Preencha `GEMINI_API_KEY` em `backend/.env` para extrair compromissos das threads importadas do Gmail. `app.assistant` oferece duas funções: `generate_natural_response(prompt)` e `generate_structured_response(prompt, response_structure)`.
 
-## O que já funciona
+## Organização da lógica
 
-- Visão semanal, cartões de compromissos detectados, pendências e conflitos.
-- Detecção de sobreposição de horários e priorização por regras explícitas do backend.
-- Criação de compromissos por formulário ou chatbot; alteração pelo chatbot.
-- Consultas conversacionais sobre agenda, pendências, compromissos detectados e conflitos.
-- Conexão OAuth, sincronização Gmail/Google Calendar, agrupamento por thread e associação de e-mails a compromissos.
-- SQLite com usuários, eventos, pendências, mensagens e relacionamento entre e-mails e eventos.
+- `app.main` registra apenas os endpoints de status, OAuth e sincronização com o Google.
+- `app.google_integration` executa a sincronização do Gmail/Google Calendar e usa a resposta estruturada do Gemini na consolidação de threads.
+- `app.features.conflict_management.identify_conflicts` recebe e retorna a mesma lista de `MeetingRecord`, preenchendo `conflict` e `conflicts_with`. Para reuniões sem duração, considera uma estimativa de 60 minutos e classifica a sobreposição como possível.
+- `app.models` contém estruturas distintas para reuniões e prazos de tarefas.
+- `app.assistant` contém somente os dois adaptadores diretos para respostas do Gemini.
 
 ## Limites desta versão
 
-O protótipo usa um usuário local demonstrativo; login próprio, isolamento multiusuário, remoção/desconexão de credenciais, atualização incremental em segundo plano, notificações e voz ainda não fazem parte do MVP. A interpretação sem Gemini cobre apenas comandos e consultas comuns e serve como fallback de demonstração. As decisões de conflito e prioridade são sempre tomadas por regras no backend.
+As rotas de agenda, tarefas, mocks e chatbot foram removidas do backend. A interface React ainda depende dessas rotas e precisará ser adaptada ou reconectada quando elas forem reintroduzidas. O protótipo usa um usuário local demonstrativo; login próprio, isolamento multiusuário, remoção/desconexão de credenciais, atualização incremental em segundo plano, notificações e voz ainda não fazem parte do MVP.

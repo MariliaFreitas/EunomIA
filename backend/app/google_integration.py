@@ -11,7 +11,7 @@ from googleapiclient.errors import HttpError
 from google.auth.exceptions import GoogleAuthError
 from oauthlib.oauth2 import OAuth2Error
 
-from .assistant import interpret_email_thread
+from .assistant import generate_structured_response
 from .db import connect
 
 if os.getenv("ENVIRONMENT", "development") == "development":
@@ -23,6 +23,33 @@ SCOPES = [
 ]
 
 USER_ID = "demo"
+EMAIL_EVENT_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "is_event": {"type": "BOOLEAN"},
+        "title": {"type": "STRING"},
+        "date": {"type": "STRING"},
+        "time": {"type": "STRING"},
+        "duration_minutes": {"type": "NUMBER"},
+        "location": {"type": "STRING"},
+        "description": {"type": "STRING"},
+        "preparation": {"type": "STRING"},
+        "cancelled": {"type": "BOOLEAN"},
+        "confirmed": {"type": "BOOLEAN"},
+    },
+    "required": [
+        "is_event",
+        "title",
+        "date",
+        "time",
+        "duration_minutes",
+        "location",
+        "description",
+        "preparation",
+        "cancelled",
+        "confirmed",
+    ],
+}
 
 
 def _client_config() -> dict:
@@ -486,13 +513,33 @@ def sync_google(
                 key=lambda message: message["received_at"],
             )
 
-            extracted = interpret_email_thread(
-                ordered[-1]["subject"],
-                ordered,
+            extracted = generate_structured_response(
+                "Consolide as mensagens deste mesmo thread de email sobre um compromisso. "
+                "Use a mensagem mais recente para refletir alterações e cancelamentos. "
+                "Se não houver compromisso, is_event=false; nesse caso use strings vazias "
+                "para data e horário e duration_minutes=0. Não invente datas. Assunto: "
+                + ordered[-1]["subject"]
+                + " Mensagens (em ordem cronológica): "
+                + json.dumps(ordered, ensure_ascii=False),
+                EMAIL_EVENT_SCHEMA,
             )
 
             if not extracted or not extracted.get("is_event"):
                 continue
+            if not extracted.get("date") or not extracted.get("time"):
+                raise ValueError(
+                    "O Gemini identificou um compromisso sem data ou horário. "
+                    "Revise a conversa no Gmail."
+                )
+            try:
+                datetime.strptime(
+                    f"{extracted['date']} {extracted['time']}",
+                    "%Y-%m-%d %H:%M",
+                )
+            except (TypeError, ValueError) as error:
+                raise ValueError(
+                    "O Gemini retornou uma data ou horário inválido para um compromisso."
+                ) from error
 
             starts_at = datetime.fromisoformat(
                 f"{extracted['date']}T{extracted['time']}:00"
