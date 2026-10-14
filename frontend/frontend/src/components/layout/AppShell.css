@@ -1,0 +1,46 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-shell__main {
+  min-width: 0;
+  min-height: 100vh;
+  margin-left: var(--sidebar-width);
+}
+
+.app-shell__content {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-8) var(--space-12);
+}
+
+.app-shell__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-scrim);
+  background: var(--color-scrim);
+  animation: scrim-in var(--duration-base) var(--ease-out);
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .app-shell__main {
+    margin-left: 0;
+  }
+
+  .app-shell__content {
+    padding: var(--space-8) var(--space-6) var(--space-10);
+  }
+}
+
+@media (max-width: 600px) {
+  .app-shell__content {
+    padding: var(--space-6) var(--space-4) var(--space-10);
+  }
+}

@@ -1,0 +1,59 @@
+.skeleton {
+  display: block;
+  background: linear-gradient(90deg, var(--color-surface-hover) 0%, var(--color-surface-muted) 50%, var(--color-surface-hover) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+.skeleton--text {
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton--block {
+  border-radius: var(--radius-md);
+}
+
+.skeleton--circle {
+  border-radius: var(--radius-full);
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-list__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.skeleton-list__row:first-of-type {
+  border-top: 0;
+}
+
+.skeleton-list__lines {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+@media (max-width: 600px) {
+  .skeleton-list__row {
+    padding: var(--space-4);
+  }
+}

@@ -1,0 +1,63 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 22px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge--neutral {
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+}
+
+.badge--primary {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+}
+
+.badge--success {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.badge--warning {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.badge--danger {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.badge--conflict {
+  background: var(--color-conflict-soft);
+  color: var(--color-conflict);
+}
+
+.badge--info {
+  background: var(--color-info-soft);
+  color: var(--color-info);
+}
+
+/* Prioridades (pendências) */
+.badge--high {
+  background: var(--priority-high-bg);
+  color: var(--priority-high-text);
+}
+
+.badge--medium {
+  background: var(--priority-medium-bg);
+  color: var(--priority-medium-text);
+}
+
+.badge--low {
+  background: var(--priority-low-bg);
+  color: var(--priority-low-text);
+}

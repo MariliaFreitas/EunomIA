@@ -1,0 +1,69 @@
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.page-header__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  max-width: 68ch;
+}
+
+.page-header__eyebrow {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.page-header__title {
+  color: var(--color-brand);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: var(--tracking-display);
+}
+
+.page-header__title:focus {
+  outline: none;
+}
+
+.page-header__description {
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Variante do Dashboard: saudação maior */
+.page-header--display .page-header__title {
+  font-size: var(--text-display);
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .page-header__title,
+  .page-header--display .page-header__title {
+    font-size: var(--text-2xl);
+  }
+
+  .page-header__description {
+    font-size: var(--text-md);
+  }
+
+  .page-header__actions,
+  .page-header__actions > * {
+    width: 100%;
+  }
+}

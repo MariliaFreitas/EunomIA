@@ -1,0 +1,168 @@
+/* ==========================================================================
+   EunomIA — Design tokens (Etapa 2 · Light Editorial Contemporary)
+   Fonte única de cores, tipografia, espaçamento, bordas, sombras e movimento.
+   Componentes usam estes tokens; valores fixos ficam proibidos fora daqui.
+
+   Contraste (WCAG AA) verificado para todos os pares texto/fundo usados.
+   Moss Green (#839958) não atinge 4.5:1 como texto: é usado só como
+   preenchimento; o texto "positivo" usa --color-moss-strong.
+   ========================================================================== */
+
+:root {
+  /* ---- Paleta institucional --------------------------------------------- */
+  --palette-dark-green: #0a3323;
+  --palette-midnight-green: #105666;
+  --palette-cream: #fffaf0;
+  --palette-white: #ffffff;
+  --palette-moss: #839958;
+  --palette-rust: #ba3801;
+  --palette-rosy: #d3968c;
+  --palette-bleu: #88b8ce;
+  --palette-miel: #f1c166;
+
+  /* ---- Papéis: marca e ações ------------------------------------------- */
+  --color-brand: var(--palette-dark-green);          /* sidebar, assistente, títulos institucionais */
+  --color-primary: var(--palette-midnight-green);    /* botões, links, interativos (8.2:1) */
+  --color-primary-strong: var(--palette-midnight-green);
+  --color-primary-hover: #0c4552;
+  --color-primary-soft: #e4eff1;
+  --color-primary-soft-hover: #d4e6ea;
+  --color-on-primary: #ffffff;
+
+  /* ---- Neutros ------------------------------------------------------------ */
+  --color-bg: var(--palette-cream);
+  --color-surface: var(--palette-white);
+  --color-surface-muted: #f7f6f1;
+  --color-surface-hover: #f2f1ea;
+  --color-text: #17231d;
+  --color-text-muted: #5d675f;       /* 5.6:1 sobre creme */
+  --color-text-subtle: #7a847c;      /* metadados não essenciais e placeholders */
+  --color-border: #e5e5de;
+  --color-border-strong: #d2d3c9;
+  --color-scrim: rgb(10 51 35 / 38%);
+
+  /* ---- Sidebar (sobre Dark Green) -------------------------------------- */
+  --sidebar-bg: var(--palette-dark-green);
+  --sidebar-text: #c9d6ce;           /* 9.3:1 */
+  --sidebar-text-muted: #9fb5a8;     /* 6.4:1 */
+  --sidebar-text-strong: #ffffff;
+  --sidebar-hover: rgb(255 255 255 / 6%);
+  --sidebar-active: rgb(255 255 255 / 11%);
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-accent: var(--palette-miel);
+
+  /* ---- Estados ----------------------------------------------------------- */
+  --color-success: #4e5f2c;
+  --color-success-soft: #eef2e4;
+  --color-success-dot: var(--palette-moss);
+  --color-moss: var(--palette-moss);
+  --color-moss-strong: #5e7038;      /* texto positivo, 5.4:1 */
+  --color-warning: #7a5300;
+  --color-warning-soft: #fcf1da;
+  --color-warning-dot: var(--palette-miel);
+  --color-danger: #a23101;
+  --color-danger-soft: #fbede6;
+  --color-danger-border: #f2d2c3;
+  --color-conflict: var(--palette-rust);
+  --color-conflict-soft: #fbede6;
+  --color-info: #1f5f7a;
+  --color-info-soft: #e3eff5;
+  --color-neutral-dot: #b3b8ae;
+
+  /* ---- Categorias de eventos (agenda) ----------------------------------- */
+  --event-calendar-bg: #e3eff5;      /* Bleu Porcelaine: compromisso da agenda */
+  --event-calendar-bar: var(--palette-bleu);
+  --event-calendar-text: #1f5f7a;
+  --event-email-bg: #fcf1da;         /* Miel Doré: detectado em e-mail, a revisar */
+  --event-email-bar: var(--palette-miel);
+  --event-email-text: #7a5300;
+  --event-conflict-bg: #f8eae7;      /* Rosy Brown: compromisso em conflito */
+  --event-conflict-bar: var(--palette-rosy);
+  --event-conflict-text: #8e4a40;
+
+  /* ---- Prioridades ------------------------------------------------------ */
+  --priority-high-bg: #fbede6;
+  --priority-high-text: #a23101;
+  --priority-medium-bg: #fcf1da;
+  --priority-medium-text: #7a5300;
+  --priority-low-bg: #eef2e4;
+  --priority-low-text: #4e5f2c;
+
+  /* ---- Tipografia ------------------------------------------------------- */
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Manrope", "DM Sans", system-ui, sans-serif;
+
+  --text-xs: 0.75rem;     /* 12 */
+  --text-sm: 0.8125rem;   /* 13 */
+  --text-md: 0.875rem;    /* 14 */
+  --text-lg: 1rem;        /* 16 */
+  --text-xl: 1.125rem;    /* 18 */
+  --text-2xl: 1.5rem;     /* 24 */
+  --text-3xl: 2rem;       /* 32 */
+  --text-display: 2.5rem; /* 40 — saudação do Dashboard */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+  --tracking-tight: -0.025em;
+  --tracking-display: -0.04em;
+  --tracking-caps: 0.06em;
+
+  /* ---- Espaçamento (escala de 4px) ------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* ---- Bordas (hierarquia: controles < cards < blocos) ------------------ */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+  --border-width: 1px;
+
+  /* ---- Sombras (mínimas) ------------------------------------------------ */
+  --shadow-xs: 0 1px 0 rgb(10 51 35 / 4%);
+  --shadow-sm: 0 2px 10px rgb(10 51 35 / 6%);
+  --shadow-lg: 0 24px 60px rgb(10 51 35 / 18%);
+  --focus-ring: 0 0 0 3px rgb(16 86 102 / 32%);
+  --focus-ring-on-dark: 0 0 0 3px rgb(241 193 102 / 70%);
+
+  /* ---- Layout ------------------------------------------------------------ */
+  --sidebar-width: 248px;
+  --topbar-height: 68px;
+  --content-max: 1360px;
+  --tap-target: 44px;
+
+  /* ---- Movimento --------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+
+  /* ---- Camadas ----------------------------------------------------------- */
+  --z-sidebar: 30;
+  --z-topbar: 20;
+  --z-popover: 40;
+  --z-scrim: 25;
+  --z-modal: 50;
+  --z-toast: 60;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}

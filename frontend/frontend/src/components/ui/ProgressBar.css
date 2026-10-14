@@ -1,0 +1,30 @@
+.progress {
+  position: relative;
+  height: 8px;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-hover);
+}
+
+.progress__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  transition: width var(--duration-base) var(--ease-out);
+}
+
+.progress--brand .progress__fill {
+  background: var(--color-brand);
+}
+
+.progress--moss .progress__fill {
+  background: var(--palette-moss);
+}
+
+.progress--bleu .progress__fill {
+  background: var(--palette-bleu);
+}
+
+.progress--miel .progress__fill {
+  background: var(--palette-miel);
+}
